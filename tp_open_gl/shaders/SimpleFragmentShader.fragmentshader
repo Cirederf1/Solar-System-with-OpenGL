@@ -1,0 +1,51 @@
+#version 330 core
+
+in vec2 UV;
+in vec4 normales;
+in vec4 dirObjLum;
+in vec4 dirObjCam;
+
+uniform sampler2D myTextureSampler;
+uniform vec3 PointLightColor;
+uniform float PointLightPower;
+
+out vec3 color;
+
+void main() {
+
+    // Couleur de l'objet
+    vec3 textureColor = texture(myTextureSampler, UV).rgb;
+    
+    // Lumière ambiante
+    vec3 ambiante = PointLightColor/100; 
+    
+    // Calcul de la lumière diffuse
+    
+    // Normalisation des vecteurs L et N
+    vec4 L = normalize(dirObjLum);
+    vec4 N = normalize(normales);
+    
+    // Calcul de l'angle Theta et de la distance entre la source de lumière et l'objet
+    float cosTheta = clamp(dot(L,N), 0, 1);
+    float longueur = length(dirObjLum);
+    
+    // Lumière diffuse
+    vec3 diffuse = PointLightColor * cosTheta / 10;
+    
+    // Calcul de la lumière spéculaire
+    
+    // Normalisation des vecteurs R et V
+    vec4 R = reflect(-L,N);
+    vec4 V = normalize(dirObjCam);
+    
+    // Calcul de l'angle Alpha
+    float cosAlpha = clamp(dot(R,V), 0, 1);
+    
+    // Lumière spéculaire
+    vec3 spec = PointLightColor * pow(cosAlpha, 5)/10;
+    
+    
+    color = textureColor * (ambiante + (diffuse+spec) / longueur * PointLightPower) ;
+}
+
+
