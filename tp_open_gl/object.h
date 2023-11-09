@@ -14,8 +14,9 @@
 class Object
 {
 public:
-//    Object(std::vector< glm::vec3 > vertices, std::vector< glm::vec2 > uvs, std::string texturePath);
+    Object(std::vector< glm::vec3 > vertices, std::vector< glm::vec2 > uvs, std::string texturePath);
     Object(std::vector< glm::vec3 > vertices, std::vector< glm::vec2 > uvs, std::vector< glm::vec3 > normales,std::string texturePath);
+    Object(const char * objPath, std::string texturePath, bool isCircle);
     Object(const char * objPath, std::string texturePath);
 
     ~Object();
@@ -45,6 +46,8 @@ private:
 
     bool loadOBJ(const char *path, std::vector<glm::vec3> &out_vertices,
     std::vector<glm::vec2> &out_uvs, std::vector<glm::vec3> &out_normals);
+    bool loadCircleOBJ(const char* path, std::vector<glm::vec3>& out_vertices, std::vector<glm::vec2>& out_uvs);
+
 
 };
 

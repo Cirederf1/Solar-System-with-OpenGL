@@ -10,6 +10,7 @@ public:
     void update(float deltaTime, Shader *shader);
 private:
     glm::vec2 lastPosCursor;
+//    UserInterface interface;
 };
 
 #endif // NAVIGATIONCONTROLS_H

@@ -21,6 +21,21 @@ Object::Object(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std:
 
 }
 
+Object::Object(const char *objPath, std::string texturePath, bool isCircle)
+    :m_vb(0), m_uvsb(0), m_normalsb(0), m_texture(0), position(0,0,0), rotationAngles(0,0,0)
+{
+    std::vector<glm::vec3> vertices;
+    std::vector<glm::vec2> uvs;
+
+    loadCircleOBJ(objPath, vertices, uvs);
+
+    m_vb = new VertexBuffer(vertices);
+    m_uvsb = new UVBuffer(uvs);
+    m_texture = new Texture(texturePath);
+
+
+}
+
 Object::Object(const char *objPath, std::string texturePath)
     :m_vb(0), m_uvsb(0), m_normalsb(0), m_texture(0), position(0,0,0), rotationAngles(0,0,0)
 {
@@ -181,3 +196,55 @@ bool Object::Object::loadOBJ(const char *path, std::vector<glm::vec3> &out_verti
     }
     return true;
 }
+
+bool Object::loadCircleOBJ(const char* path, std::vector<glm::vec3>& out_vertices, std::vector<glm::vec2>& out_uvs)
+{
+    std::vector<unsigned int> vertexIndices, uvIndices;
+    std::vector<glm::vec3> temp_vertices;
+    std::vector< glm::vec2 > temp_uvs;
+
+    FILE* file = fopen(path, "r");
+    if (file == NULL)
+    {
+        printf("Impossible to open the file!\n");
+        return false;
+    }
+
+    while (1)
+    {
+        char lineHeader[128];
+        // read the first word of the line
+        int res = fscanf(file, "%s", lineHeader);
+        if (res == EOF)
+            break; // EOF = End Of File. Quit the loop.
+        // else: parse lineHeader
+        if (strcmp(lineHeader, "v") == 0)
+        {
+            glm::vec3 vertex;
+            fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
+            temp_vertices.push_back(vertex);
+        }
+        else if (strcmp(lineHeader, "l") == 0)
+        {
+            glm::vec2 uv;
+            fscanf(file, "%f %f\n", &uv.x, &uv.y );
+            temp_uvs.push_back(uv);
+        }
+    }
+
+    for (unsigned int i = 0; i < vertexIndices.size(); i++)
+    {
+        unsigned int vertexIndex = vertexIndices[i];
+        glm::vec3 vertex = temp_vertices[vertexIndex - 1];
+        out_vertices.push_back(vertex);
+    }
+    for ( unsigned int i=0; i < uvIndices.size(); i++ )
+    {
+        unsigned int uvIndex = uvIndices[i];
+        glm::vec2 uv = temp_uvs[ uvIndex-1 ];
+        out_uvs.push_back(uv);
+    }
+
+    return true;
+}
+
