@@ -1,7 +1,7 @@
 CMakeFiles/tp_open_gl.dir/pointlight.cpp.o: \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/pointlight.cpp \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/pointlight.cpp \
  /usr/include/stdc-predef.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/pointlight.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/pointlight.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -188,7 +188,7 @@ CMakeFiles/tp_open_gl.dir/pointlight.cpp.o: \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/shader.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/shader.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h \

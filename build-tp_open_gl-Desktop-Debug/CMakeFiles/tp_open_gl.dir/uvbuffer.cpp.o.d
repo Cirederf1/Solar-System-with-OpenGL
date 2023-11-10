@@ -1,7 +1,7 @@
 CMakeFiles/tp_open_gl.dir/uvbuffer.cpp.o: \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/uvbuffer.cpp \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/uvbuffer.cpp \
  /usr/include/stdc-predef.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/uvbuffer.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/uvbuffer.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -217,7 +217,7 @@ CMakeFiles/tp_open_gl.dir/uvbuffer.cpp.o: \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/renderer.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/renderer.h \
  /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
@@ -316,9 +316,9 @@ CMakeFiles/tp_open_gl.dir/uvbuffer.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/vertexarray.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/vertexbuffer.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/shader.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/vertexarray.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/vertexbuffer.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/shader.h \
  /usr/include/c++/11/stdlib.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
@@ -334,5 +334,5 @@ CMakeFiles/tp_open_gl.dir/uvbuffer.cpp.o: \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/bits/erase_if.h /usr/include/GLFW/glfw3.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/object.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/texture.h
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/object.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/texture.h

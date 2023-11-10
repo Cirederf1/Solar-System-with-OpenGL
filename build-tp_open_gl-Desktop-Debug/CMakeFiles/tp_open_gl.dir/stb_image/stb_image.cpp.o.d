@@ -1,7 +1,7 @@
 CMakeFiles/tp_open_gl.dir/stb_image/stb_image.cpp.o: \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/stb_image/stb_image.cpp \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/stb_image/stb_image.cpp \
  /usr/include/stdc-predef.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/stb_image/stb_image.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/stb_image/stb_image.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

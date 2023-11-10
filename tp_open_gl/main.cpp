@@ -22,7 +22,7 @@ using namespace std;
 
 int main()
 {
-    string path = "/home/fredo/Documents/tp_open_gl/tp_open_gl";
+    string path = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl";
 /////////////////////////Initialisation de GLFW/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if(!glfwInit()){
@@ -105,7 +105,7 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/fredo/Documents/tp_open_gl/tp_open_gl/obj/suzanne.obj";
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/suzanne.obj";
     texturePath = path+"/textures/texture_suzanne.png";
 
     Object o(objPath, texturePath);
@@ -113,7 +113,7 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/fredo/Documents/tp_open_gl/tp_open_gl/obj/orbite.obj";
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/orbite.obj";
     texturePath = path+"/textures/marbre.png";
 
     Object orbite(objPath, texturePath);
@@ -122,7 +122,7 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/fredo/Documents/tp_open_gl/tp_open_gl/obj/sphere.obj";
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
     texturePath = path+"/textures/systeme/galaxy.jpg";
 
     Object sky(objPath, texturePath);
@@ -130,16 +130,18 @@ int main()
 
 
     /*_______________________________________________________________________________________*/
-
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/m_evee2.obj";
 
     texturePath = path+"/textures/systeme/soleil.jpg";
 
     Object soleil(objPath, texturePath);
     soleil.position = {0.0f, 0.0f, 0.0f};
     soleil.radius = 100.0;
+    soleil.period = 100;
 
 
     /*_______________________________________________________________________________________*/
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
 
     texturePath = path+"/textures/systeme/terre.jpg";
 
@@ -223,7 +225,7 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/fredo/Documents/tp_open_gl/tp_open_gl/obj/ring.obj";
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/ring.obj";
     texturePath = path+"/textures/systeme/saturn_ring.png";
 
     Object saturn_ring(objPath, texturePath);
@@ -236,7 +238,7 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/fredo/Documents/tp_open_gl/tp_open_gl/obj/sphere.obj";
+    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
     texturePath = path+"/textures/systeme/uranus.jpg";
 
     Object uranus(objPath, texturePath);
@@ -584,6 +586,8 @@ int main()
         ////////////////Dessin de l'objet soleil///////////////
 
         // Mise à jour de la taille
+//        soleil.Update(currentTime, deltaTime);
+
         m = soleil.getModelMatrix();
         scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(soleil.radius));
         M_prime = m * scalingMatrix;
@@ -598,187 +602,187 @@ int main()
 
 
 
-//        ////////////////Dessin des orbites///////////////
+        ////////////////Dessin des orbites///////////////
 
 
-//        // Terre //
+        // Terre //
 
-//        // Mise à jour de la taille
-//        orbite.radius = terre.orbital_radius + terre.radius/2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
+        // Mise à jour de la taille
+        orbite.radius = terre.orbital_radius + terre.radius/2;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
 
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
 
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
 
-//        // Terre //
-
-
-
-//        // Moon //
-
-//        // Mise à jour de la taille
-//        orbite_moon.radius = moon.orbital_radius + moon.radius/2;
-//        orbite_moon.position = terre.position;
-//        m = orbite_moon.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite_moon.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
-
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
-
-//        //Dessin
-//        renderer.Draw(va, orbite_moon, shaderSphere);
-
-//        // Moon //
+        // Terre //
 
 
 
-//        // Mercury //
+        // Moon //
 
-//        // Mise à jour de la taille
-//        orbite.radius = mercure.orbital_radius + mercure.radius;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
+        // Mise à jour de la taille
+        orbite_moon.radius = moon.orbital_radius + moon.radius/2;
+        orbite_moon.position = terre.position;
+        m = orbite_moon.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite_moon.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
 
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
 
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
+        //Dessin
+        renderer.Draw(va, orbite_moon, shaderSphere);
 
-//        // Mercury //
-
-
-
-//        // Venus //
-
-//        // Mise à jour de la taille
-//        orbite.radius = venus.orbital_radius + venus.radius/2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
-
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
-
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
-
-//        // Venus //
+        // Moon //
 
 
 
-//        // Mars //
+        // Mercury //
 
-//        // Mise à jour de la taille
-//        orbite.radius = mars.orbital_radius + mars.radius*3/2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
+        // Mise à jour de la taille
+        orbite.radius = mercure.orbital_radius + mercure.radius;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
 
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
 
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
 
-//        // Mars //
-
-
-
-//        // Jupiter //
-
-//        // Mise à jour de la taille
-//        orbite.radius = jupiter.orbital_radius + jupiter.radius/2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
-
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
-
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
-
-//        // Jupiter //
+        // Mercury //
 
 
 
-//        // Saturn //
+        // Venus //
 
-//        // Mise à jour de la taille
-//        orbite.radius = saturn.orbital_radius + saturn.radius/2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
+        // Mise à jour de la taille
+        orbite.radius = venus.orbital_radius + venus.radius/2;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
 
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
 
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
 
-//        // Saturn //
-
-
-
-//        // Uranus //
-
-//        // Mise à jour de la taille
-//        orbite.radius = uranus.orbital_radius + uranus.radius*2;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
-
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
-
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
-
-//        // Uranus //
+        // Venus //
 
 
 
-//        // Neptune //
+        // Mars //
 
-//        // Mise à jour de la taille
-//        orbite.radius = neptune.orbital_radius + neptune.radius*3;
-//        m = orbite.getModelMatrix();
-//        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
-//        M_prime = m * scalingMatrix;
-//        mvp = p*v*M_prime;
+        // Mise à jour de la taille
+        orbite.radius = mars.orbital_radius + mars.radius*3/2;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
 
-//        //Envoie au shader
-//        shaderSphere.setUniform3fv("PointLightColor", lightColor);
-//        shaderSphere.setUniformMat4f("MVP", mvp);
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
 
-//        //Dessin
-//        renderer.Draw(va, orbite, shaderSphere);
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
 
-//        // Neptune //
+        // Mars //
+
+
+
+        // Jupiter //
+
+        // Mise à jour de la taille
+        orbite.radius = jupiter.orbital_radius + jupiter.radius / 3;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
+
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
+
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
+
+        // Jupiter //
+
+
+
+        // Saturn //
+
+        // Mise à jour de la taille
+        orbite.radius = saturn.orbital_radius + saturn.radius/2;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
+
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
+
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
+
+        // Saturn //
+
+
+
+        // Uranus //
+
+        // Mise à jour de la taille
+        orbite.radius = uranus.orbital_radius + uranus.radius*2;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
+
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
+
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
+
+        // Uranus //
+
+
+
+        // Neptune //
+
+        // Mise à jour de la taille
+        orbite.radius = neptune.orbital_radius + neptune.radius*3;
+        m = orbite.getModelMatrix();
+        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+        M_prime = m * scalingMatrix;
+        mvp = p*v*M_prime;
+
+        //Envoie au shader
+        shaderSphere.setUniform3fv("PointLightColor", lightColor);
+        shaderSphere.setUniformMat4f("MVP", mvp);
+
+        //Dessin
+        renderer.Draw(va, orbite, shaderSphere);
+
+        // Neptune //
 
 
 

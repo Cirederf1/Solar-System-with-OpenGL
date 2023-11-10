@@ -57,18 +57,18 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fredo/Documents/tp_open_gl/tp_open_gl
+CMAKE_SOURCE_DIR = /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug
+CMAKE_BINARY_DIR = /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug/CMakeFiles /home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug/CMakeFiles /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -273,6 +273,30 @@ object.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/object.cpp.s
 .PHONY : object.cpp.s
 
+orbit.o: orbit.cpp.o
+.PHONY : orbit.o
+
+# target to build an object file
+orbit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/orbit.cpp.o
+.PHONY : orbit.cpp.o
+
+orbit.i: orbit.cpp.i
+.PHONY : orbit.i
+
+# target to preprocess a source file
+orbit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/orbit.cpp.i
+.PHONY : orbit.cpp.i
+
+orbit.s: orbit.cpp.s
+.PHONY : orbit.s
+
+# target to generate assembly for a file
+orbit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/orbit.cpp.s
+.PHONY : orbit.cpp.s
+
 pointlight.o: pointlight.cpp.o
 .PHONY : pointlight.o
 
@@ -393,6 +417,30 @@ texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/texture.cpp.s
 .PHONY : texture.cpp.s
 
+userinterface.o: userinterface.cpp.o
+.PHONY : userinterface.o
+
+# target to build an object file
+userinterface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/userinterface.cpp.o
+.PHONY : userinterface.cpp.o
+
+userinterface.i: userinterface.cpp.i
+.PHONY : userinterface.i
+
+# target to preprocess a source file
+userinterface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/userinterface.cpp.i
+.PHONY : userinterface.cpp.i
+
+userinterface.s: userinterface.cpp.s
+.PHONY : userinterface.s
+
+# target to generate assembly for a file
+userinterface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp_open_gl.dir/build.make CMakeFiles/tp_open_gl.dir/userinterface.cpp.s
+.PHONY : userinterface.cpp.s
+
 uvbuffer.o: uvbuffer.cpp.o
 .PHONY : uvbuffer.o
 
@@ -492,6 +540,9 @@ help:
 	@echo "... object.o"
 	@echo "... object.i"
 	@echo "... object.s"
+	@echo "... orbit.o"
+	@echo "... orbit.i"
+	@echo "... orbit.s"
 	@echo "... pointlight.o"
 	@echo "... pointlight.i"
 	@echo "... pointlight.s"
@@ -507,6 +558,9 @@ help:
 	@echo "... texture.o"
 	@echo "... texture.i"
 	@echo "... texture.s"
+	@echo "... userinterface.o"
+	@echo "... userinterface.i"
+	@echo "... userinterface.s"
 	@echo "... uvbuffer.o"
 	@echo "... uvbuffer.i"
 	@echo "... uvbuffer.s"

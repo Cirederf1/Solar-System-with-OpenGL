@@ -1,9 +1,9 @@
 CMakeFiles/tp_open_gl.dir/fpscontrols.cpp.o: \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/fpscontrols.cpp \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/fpscontrols.cpp \
  /usr/include/stdc-predef.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/fpscontrols.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/controls.h \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/camera.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/fpscontrols.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/controls.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/camera.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -204,7 +204,7 @@ CMakeFiles/tp_open_gl.dir/fpscontrols.cpp.o: \
  /usr/include/glm/ext/matrix_transform.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
  /usr/include/glm/gtx/transform.inl \
- /home/fredo/Documents/tp_open_gl/tp_open_gl/shader.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/shader.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h \

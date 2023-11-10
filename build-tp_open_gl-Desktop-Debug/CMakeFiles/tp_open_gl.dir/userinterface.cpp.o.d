@@ -1,8 +1,8 @@
-CMakeFiles/tp_open_gl.dir/controls.cpp.o: \
- /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/controls.cpp \
+CMakeFiles/tp_open_gl.dir/userinterface.cpp.o: \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/userinterface.cpp \
  /usr/include/stdc-predef.h \
- /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/controls.h \
- /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/camera.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/userinterface.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/pointlight.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -189,20 +189,6 @@ CMakeFiles/tp_open_gl.dir/controls.cpp.o: \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
- /usr/include/glm/gtx/transform.hpp \
- /usr/include/glm/gtc/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_projection.hpp \
- /usr/include/glm/gtc/constants.hpp \
- /usr/include/glm/ext/scalar_constants.hpp \
- /usr/include/glm/ext/scalar_constants.inl \
- /usr/include/glm/gtc/constants.inl \
- /usr/include/glm/ext/matrix_projection.inl \
- /usr/include/glm/ext/matrix_clip_space.hpp \
- /usr/include/glm/ext/matrix_clip_space.inl \
- /usr/include/glm/ext/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_transform.inl \
- /usr/include/glm/gtc/matrix_transform.inl \
- /usr/include/glm/gtx/transform.inl \
  /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/shader.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
@@ -317,4 +303,9 @@ CMakeFiles/tp_open_gl.dir/controls.cpp.o: \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/GLFW/glfw3.h
+ /usr/include/c++/11/bits/erase_if.h /usr/include/GLFW/glfw3.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/object.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/vertexbuffer.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/vertexarray.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/texture.h \
+ /home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/uvbuffer.h

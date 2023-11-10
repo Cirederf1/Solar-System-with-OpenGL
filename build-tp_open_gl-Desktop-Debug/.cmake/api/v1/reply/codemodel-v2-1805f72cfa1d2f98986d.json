@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tp_open_gl::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tp_open_gl-Debug-094d012fc23ee038feb1.json",
+					"jsonFile" : "target-tp_open_gl-Debug-38e04f9f5898a1a7277e.json",
 					"name" : "tp_open_gl",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug",
-		"source" : "/home/fredo/Documents/tp_open_gl/tp_open_gl"
+		"build" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug",
+		"source" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl"
 	},
 	"version" : 
 	{

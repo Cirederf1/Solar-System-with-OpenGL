@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug"
+			"value" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -302,6 +302,18 @@
 			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
+			"name" : "CMAKE_EDIT_COMMAND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to cache edit program executable."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/usr/bin/ccmake"
+		},
+		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
 			"properties" : 
 			[
@@ -479,7 +491,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/fredo/Documents/tp_open_gl/tp_open_gl"
+			"value" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -699,7 +711,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : ""
+			"value" : "/usr"
 		},
 		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",
@@ -1051,7 +1063,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : ""
+			"value" : "/usr/lib/qt5/bin/qmake"
 		},
 		{
 			"name" : "tp_open_gl_BINARY_DIR",
@@ -1063,7 +1075,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/fredo/Documents/tp_open_gl/build-tp_open_gl-Desktop-Debug"
+			"value" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/build-tp_open_gl-Desktop-Debug"
 		},
 		{
 			"name" : "tp_open_gl_IS_TOP_LEVEL",
@@ -1087,7 +1099,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/fredo/Documents/tp_open_gl/tp_open_gl"
+			"value" : "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl"
 		}
 	],
 	"kind" : "cache",
