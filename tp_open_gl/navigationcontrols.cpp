@@ -1,19 +1,28 @@
 #include "navigationcontrols.h"
-//#include "imgui/imgui.h"
+#include "imgui/imgui.h"
 
-NavigationControls::NavigationControls(GLFWwindow *window, Camera *camera)
-    :Controls(window, camera), lastPosCursor(-1,-1)
+NavigationControls::NavigationControls(GLFWwindow *window, Camera *camera, UserInterface &ui)
+    :Controls(window, camera), lastPosCursor(-1,-1), interface(&ui)
 {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     mouseSpeed = 0.02;
 }
 
+
 void NavigationControls::update(float deltaTime, Shader *shader)
 {
 
 
+    // On dessine l'interface imgui
+    interface->Draw();
+
+    // On détecte si la souris est sur la fenêtre imgui
+    ImGuiIO& io = ImGui::GetIO();
+    io.AddMouseButtonEvent(1, 0);
+
     // On test d'abord si on est sur la fenêtre imgui ou pas
-    if (/*!io.WantCaptureMouse*/true){
+    if (!io.WantCaptureMouse && interface->selectedPlanet == -1){
+
 
         int state = glfwGetMouseButton(m_Window, GLFW_MOUSE_BUTTON_LEFT);
         double xpos, ypos;

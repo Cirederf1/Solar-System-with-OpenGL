@@ -25,10 +25,13 @@ public:
 
     void Bind(Shader *shader);
 
+    void SetPosition(const glm::vec3& planetePosition, const glm::vec3 &sunPosition, float planeteRadius);
+
 private:
     float FoV;
     glm::mat4 viewMatrix;
     glm::mat4 projectionMatrix;
+    float width, height;
 };
 
 #endif // CAMERA_H

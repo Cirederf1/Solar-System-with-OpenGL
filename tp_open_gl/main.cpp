@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -15,6 +16,11 @@
 #include "pointlight.h"
 #include "object.h"
 #include "orbit.h"
+#include "userinterface.h"
+
+#include "imgui/imgui.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl3.h"
 
 
 
@@ -22,7 +28,10 @@ using namespace std;
 
 int main()
 {
-    string path = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl";
+    // Chemin du projet // Attention, changer le nom du dossier final
+    string path = std::filesystem::current_path().parent_path().string() + "/tp_open_gl";
+
+
 /////////////////////////Initialisation de GLFW/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if(!glfwInit()){
@@ -73,6 +82,7 @@ int main()
         return -1;
     }
 
+
 /////////////////////////On crée un Renderer/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Renderer renderer;
@@ -90,22 +100,17 @@ int main()
     VertexArray va;
     va.Bind();
 
-/////////////////////////On crée la camera et les contrôles/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    Camera cam(width, height);
-    NavigationControls controls(window, &cam);
-//    FPSControls controls(window,&cam);
-
 
 /////////////////////////Création des objets/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const char* objPath;
+    std::string objPathString;
     std::string texturePath;
-    std::vector <Object> planets;
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/suzanne.obj";
+    objPathString = path + "/obj/suzanne.obj";
+    objPath = objPathString.c_str();
     texturePath = path+"/textures/texture_suzanne.png";
 
     Object o(objPath, texturePath);
@@ -113,7 +118,8 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/orbite.obj";
+    objPathString = path + "/obj/orbite.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/marbre.png";
 
     Object orbite(objPath, texturePath);
@@ -122,7 +128,8 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
+    objPathString = path + "/obj/sphere.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/galaxy.jpg";
 
     Object sky(objPath, texturePath);
@@ -130,8 +137,8 @@ int main()
 
 
     /*_______________________________________________________________________________________*/
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/m_evee2.obj";
-
+    objPathString = path + "/obj/m_evee2.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/soleil.jpg";
 
     Object soleil(objPath, texturePath);
@@ -141,8 +148,8 @@ int main()
 
 
     /*_______________________________________________________________________________________*/
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
-
+    objPathString = path + "/obj/sphere.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/terre.jpg";
 
     Object terre(objPath, texturePath);
@@ -225,7 +232,8 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/ring.obj";
+    objPathString = path + "/obj/ring.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/saturn_ring.png";
 
     Object saturn_ring(objPath, texturePath);
@@ -238,7 +246,8 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPath = "/home/formation/Documents/open_gl/TP_SOLAR_SYS/Solar-System/tp_open_gl/obj/sphere.obj";
+    objPathString = path + "/obj/sphere.obj";
+    objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/uranus.jpg";
 
     Object uranus(objPath, texturePath);
@@ -261,8 +270,43 @@ int main()
     neptune.inclinaison = glm::radians(28.0f);
 
 
-    /*_______________________________________________________________________________________*/
+/////////////////////////Création d'un vecteur contenant toutes les planètes////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    std::vector<Object*> planets;
+    planets.push_back(&mercure);
+    planets.push_back(&venus);
+    planets.push_back(&terre);
+    planets.push_back(&mars);
+    planets.push_back(&jupiter);
+    planets.push_back(&saturn);
+    planets.push_back(&uranus);
+    planets.push_back(&neptune);
+
+
+
+/////////////////////////Création d'une source de lumière////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    glm::vec3 lightPosition;
+    lightPosition = soleil.position;
+    glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+    float lightPower = 1000.0f; // Puissance de la lumière
+
+    PointLight lightSource(lightPosition, lightColor, lightPower);
+
+
+/////////////////////////On crée la camera/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    Camera cam(width, height);
+
+/////////////////////////Création de la fenêtre IMGUI/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    UserInterface ui(&lightSource, &cam, window, planets, &soleil);
+
+/////////////////////////Création des contrôles/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    NavigationControls controls(window, &cam, ui);
+//    FPSControls controls(window,&cam);
 
 
 /////////////////////////Création de la matrice MVP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -273,16 +317,6 @@ int main()
     glm::mat4 p = cam.getProjectionMatrix();
 
     glm::mat4 mvp = p*v*m;
-
-
-    /////////////////////////Création d'une source de lumière////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    glm::vec3 lightPosition;
-    lightPosition = soleil.position;
-    glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-    float lightPower = 1000.0f; // Puissance de la lumière
-
-    PointLight lightSource(lightPosition, lightColor, lightPower);
 
 
 /////////////////////////Boucle de rendu/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,9 +346,17 @@ int main()
 
     while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && !glfwWindowShouldClose(window)){
 
+
+//        std::cout<< lightSource.power<< std::endl;
+
         currentTime = glfwGetTime();
-        deltaTime = currentTime-lastTime;
+        deltaTime = (currentTime-lastTime);
         lastTime = currentTime;
+
+        float speed = ui.getRotationSpeed();
+
+//        std::cout<<ui.getRotationSpeed()<<std::endl;
+
 
         ////////////////On commence par vider les buffers///////////////
         renderer.Clear();
@@ -326,7 +368,6 @@ int main()
         lightSource.Bind(&shader);
 
         ////////////////Détermination de la matrice MVP et envoie vers les shaders///////////////
-        controls.update(deltaTime, &shader);
         cam.computeMatrices(width, height);
 
         v = cam.getViewMatrix();
@@ -344,7 +385,7 @@ int main()
         ////////////////Dessin de l'objet terre/////////////////////
 
         //Mise à jour de la position
-        terre.Update(currentTime, deltaTime);
+        terre.Update(currentTime, deltaTime, speed);
         terre.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -364,7 +405,7 @@ int main()
         ////////////////Dessin de l'objet lune/////////////////////
 
         //Mise à jour de la position
-        moon.Update(currentTime, deltaTime);
+        moon.Update(currentTime, deltaTime, speed);
         moon.orbital_center = terre.position;
 
         //Mise à jour de taille
@@ -384,7 +425,7 @@ int main()
         ////////////////Dessin de l'objet mercure/////////////////////
 
         //Mise à jour de la position
-        mercure.Update(currentTime, deltaTime);
+        mercure.Update(currentTime, deltaTime, speed);
         mercure.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -404,7 +445,7 @@ int main()
         ////////////////Dessin de l'objet venus/////////////////////
 
         //Mise à jour de la position
-        venus.Update(currentTime, deltaTime);
+        venus.Update(currentTime, deltaTime, speed);
         venus.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -424,7 +465,7 @@ int main()
         ////////////////Dessin de l'objet mars/////////////////////
 
         //Mise à jour de la position
-        mars.Update(currentTime, deltaTime);
+        mars.Update(currentTime, deltaTime, speed);
         mars.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -444,7 +485,7 @@ int main()
         ////////////////Dessin de l'objet jupiter/////////////////////
 
         //Mise à jour de la position
-        jupiter.Update(currentTime, deltaTime);
+        jupiter.Update(currentTime, deltaTime, speed);
         jupiter.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -465,7 +506,7 @@ int main()
         ////////////////Dessin de l'objet saturn/////////////////////
 
         //Mise à jour de la position
-        saturn.Update(currentTime, deltaTime);
+        saturn.Update(currentTime, deltaTime, speed);
         saturn.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -486,7 +527,7 @@ int main()
         ////////////////Dessin de l'objet saturn_ring/////////////////////
 
         //Mise à jour de la position
-        saturn_ring.Update(currentTime, deltaTime);
+        saturn_ring.Update(currentTime, deltaTime, speed);
         saturn_ring.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -507,7 +548,7 @@ int main()
         ////////////////Dessin de l'objet uranus/////////////////////
 
         //Mise à jour de la position
-        uranus.Update(currentTime, deltaTime);
+        uranus.Update(currentTime, deltaTime, speed);
         uranus.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -528,7 +569,7 @@ int main()
         ////////////////Dessin de l'objet neptune/////////////////////
 
         //Mise à jour de la position
-        neptune.Update(currentTime, deltaTime);
+        neptune.Update(currentTime, deltaTime, speed);
         neptune.orbital_center = soleil.position;
 
         //Mise à jour de taille
@@ -546,24 +587,9 @@ int main()
 
 
 
-
         ////////////////Bind le shader du ciel et du Soleil///////////////
         /// (Important de bind le 2e Shader après avoir Draw tous les objets du premier)
         shaderSphere.Bind();
-
-//        // Dessinez les orbites
-//        glColor3f(1.0f, 1.0f, 1.0f);
-//        glLineWidth(10.0f); // Épaisseur des lignes en pixels
-
-//        glBegin(GL_LINE_LOOP);
-//        for (float angle = 0; angle < 2 * M_PI; angle += 0.01) {
-//            float x = cos(angle) * terre.orbital_radius;
-//            float y = 0;
-//            float z = sin(angle) * terre.orbital_radius;
-
-//            glVertex3f(x, y, z);
-//        }
-//        glEnd();
 
 
         ////////////////Dessin du ciel///////////////
@@ -594,7 +620,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -603,6 +628,7 @@ int main()
 
 
         ////////////////Dessin des orbites///////////////
+
 
 
         // Terre //
@@ -615,7 +641,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -636,7 +661,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -656,7 +680,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -676,7 +699,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -696,7 +718,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -711,12 +732,12 @@ int main()
         // Mise à jour de la taille
         orbite.radius = jupiter.orbital_radius + jupiter.radius / 3;
         m = orbite.getModelMatrix();
+
         scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
         M_prime = m * scalingMatrix;
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -736,7 +757,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -756,7 +776,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -776,7 +795,6 @@ int main()
         mvp = p*v*M_prime;
 
         //Envoie au shader
-        shaderSphere.setUniform3fv("PointLightColor", lightColor);
         shaderSphere.setUniformMat4f("MVP", mvp);
 
         //Dessin
@@ -785,16 +803,20 @@ int main()
         // Neptune //
 
 
+        ////////////////Mis à jour des controls et de l'interface UI///////////////
+        controls.update(deltaTime, &shaderSphere);
+
 
         ////////////////Partie rafraichissement de l'image et des évènements///////////////
-
-
         //Swap buffers : frame refresh
         glfwSwapBuffers(window);
+
         //get the events
         glfwPollEvents();
 
+
     }
+
 
     glfwTerminate();
 

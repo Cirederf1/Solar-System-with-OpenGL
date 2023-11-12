@@ -2,15 +2,17 @@
 #define NAVIGATIONCONTROLS_H
 
 #include "controls.h"
+#include "userinterface.h"
 
 class NavigationControls : public Controls
 {
 public:
-    NavigationControls(GLFWwindow* window, Camera *camera);
+    NavigationControls(GLFWwindow* window, Camera *camera, UserInterface &ui);
+//  NavigationControls(GLFWwindow* window, Camera *camera);
     void update(float deltaTime, Shader *shader);
 private:
     glm::vec2 lastPosCursor;
-//    UserInterface interface;
+    UserInterface *interface;
 };
 
 #endif // NAVIGATIONCONTROLS_H

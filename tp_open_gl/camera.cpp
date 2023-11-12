@@ -1,7 +1,8 @@
 #include "camera.h"
 #include "renderer.h"
 
-Camera::Camera(float width, float height):position(0,200,0), horizontalAngle(3.14), verticalAngle(0), FoV(80)
+Camera::Camera(float width, float height)
+    :position(0,200,0), horizontalAngle(3.14), verticalAngle(0), FoV(80), width(width), height(height)
 {
     computeMatrices(width, height);
 }
@@ -55,6 +56,21 @@ const glm::mat4 &Camera::getProjectionMatrix() const
 void Camera::Bind(Shader *shader)
 {
     shader->setUniform3fv("camPosition", position);
+}
+
+void Camera::SetPosition(const glm::vec3& planetePosition, const glm::vec3& sunPosition, float planeteRadius)
+{
+    // Décalez la caméra de quelques mètres dans la direction opposée à la Terre
+   glm::vec3 offset = (-20.0f - planeteRadius*2) * glm::normalize(planetePosition);
+   position = planetePosition + offset;
+   verticalAngle = 0;
+
+   // Calculez l'angle entre la Terre et le Soleil
+   glm::vec3 directionToSun = glm::normalize(sunPosition - planetePosition);
+   float planetRotationAngle = atan2(directionToSun.x, directionToSun.z);
+
+   // Ajoutez l'angle de rotation de la planète pour que la caméra regarde correctement la planète
+   horizontalAngle = planetRotationAngle + glm::pi<float>();  // Utilisez le pi pour orienter la caméra dans la direction opposée
 }
 
 

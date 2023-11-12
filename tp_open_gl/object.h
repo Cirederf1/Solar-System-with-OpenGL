@@ -23,7 +23,7 @@ public:
     void Bind() const;
     void Unbind() const;
     void Draw() const;
-    void Update(float currentTime, float deltaTime);
+    void Update(float currentTime, float deltaTime, float speed);
 
     glm::vec3 position;
     glm::vec3 rotationAngles;

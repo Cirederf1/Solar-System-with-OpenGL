@@ -17,9 +17,11 @@ void main() {
     vec3 textureColor = texture(myTextureSampler, UV).rgb;
     
     // Lumière ambiante
-    vec3 ambiante = PointLightColor/10; 
+    vec3 ambiante = PointLightColor/100; 
     
-    // Calcul de la lumière diffuse
+    
+    
+    // Calcul de la lumière diffuse//
     
     // Normalisation des vecteurs L et N
     vec4 L = normalize(dirObjLum);
@@ -30,9 +32,12 @@ void main() {
     float longueur = length(dirObjLum);
     
     // Lumière diffuse
-    vec3 diffuse = PointLightColor * cosTheta /2;
+    vec3 diffuse = PointLightColor * cosTheta / 10;
     
-    // Calcul de la lumière spéculaire
+    
+    
+    
+    // Calcul de la lumière spéculaire//
     
     // Normalisation des vecteurs R et V
     vec4 R = reflect(-L,N);
@@ -42,7 +47,9 @@ void main() {
     float cosAlpha = clamp(dot(R,V), 0, 1);
     
     // Lumière spéculaire
-    vec3 spec = PointLightColor * pow(cosAlpha, 5)/20;
+    vec3 spec = PointLightColor * pow(cosAlpha, 5)/10;
+    
+    
     
     
     color = textureColor * (ambiante + (diffuse+spec) / longueur * PointLightPower) ;
