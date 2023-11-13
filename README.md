@@ -12,6 +12,11 @@ Ensure that you have the following tools and libraries installed on your system:
    - GLFW
    - GLM
    - GLEW
+  
+**Linux (Ubuntu):**
+```bash
+sudo apt install qtcreator cmake libglfw3-dev libglm-dev libglew-dev
+```
 
 ## Installation
 
