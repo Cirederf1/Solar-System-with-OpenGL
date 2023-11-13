@@ -107,22 +107,12 @@ int main()
 
     /*_______________________________________________________________________________________*/
 
-    objPathString = path + "/obj/suzanne.obj";
-    objPath = objPathString.c_str();
-    texturePath = path+"/textures/texture_suzanne.png";
-
-    Object o(objPath, texturePath);
-    o.position = {2.0f,0.0f,2.0f};
-
-    /*_______________________________________________________________________________________*/
-
     objPathString = path + "/obj/orbite.obj";
     objPath = objPathString .c_str();
-    texturePath = path+"/textures/marbre.png";
+    texturePath = path+"/textures/blanc.jpg";
 
     Object orbite(objPath, texturePath);
     Object orbite_moon(objPath, texturePath);
-
 
     /*_______________________________________________________________________________________*/
 
@@ -165,7 +155,6 @@ int main()
     moon.radius = 0.7;
     moon.period = 5;
     moon.orbital_radius = terre.radius + moon.radius + 5.0;
-
 
 
     /*_______________________________________________________________________________________*/
@@ -309,11 +298,11 @@ int main()
 /////////////////////////Création de la matrice MVP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     cam.computeMatrices(width, height);
-    glm::mat4 m = o.getModelMatrix();
+    glm::mat4 m ;
     glm::mat4 v = cam.getViewMatrix();
     glm::mat4 p = cam.getProjectionMatrix();
 
-    glm::mat4 mvp = p*v*m;
+    glm::mat4 mvp;
 
 
 /////////////////////////Boucle de rendu/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
