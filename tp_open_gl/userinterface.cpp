@@ -6,13 +6,11 @@
 UserInterface::UserInterface(PointLight *pl, Camera *camera, GLFWwindow* window, std::vector<Object *> planetes, Object *soleil)
     :m_pl(pl),m_rotationSpeed(1.0f), camera(camera), planetes(planetes), soleil(soleil)
 {
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330 core");
     ImGui::StyleColorsDark();
-
 }
 
 UserInterface::~UserInterface()
@@ -39,7 +37,6 @@ void UserInterface::Draw()
 {
     const char* planetNames[] = { "Mercure", "Venus", "Terre", "Mars", "Jupiter", "Saturne", "Uranus", "Neptune" };
 
-
     // Démarrez une nouvelle frame ImGui
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -50,7 +47,7 @@ void UserInterface::Draw()
     ImGui::SetNextWindowSize(ImVec2(450, 350), ImGuiCond_Always);
 
     // Démarrez la fenêtre ImGui en désactivant la possibilité de redimensionner
-    ImGui::Begin("Hello, Florent!", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+    ImGui::Begin("Paramètres", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     // Sélection de la planète à suivre
     ImGui::Text("Sélectionnez une planète :");
@@ -63,7 +60,7 @@ void UserInterface::Draw()
     }
 
     // Si une des planètes est selectionnée, la caméra la suit
-    if (selectedPlanet != -1)
+    if (selectedPlanet != -1 )
     {
         camera->SetPosition(planetes[selectedPlanet]->position, soleil->position, planetes[selectedPlanet]->radius);
     }

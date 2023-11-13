@@ -38,7 +38,6 @@ int main()
         return -1;
     }
 
-
     glfwWindowHint(GLFW_SAMPLES, 4); //antialiasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //version 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -81,14 +80,11 @@ int main()
         return -1;
     }
 
-
 /////////////////////////On crée un Renderer/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Renderer renderer;
 
-
 /////////////////////////On crée les Shaders/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     Shader shader(path+"/shaders/SimpleVertexShader.vertexshader", path+"/shaders/SimpleFragmentShader.fragmentshader");
     Shader shaderSphere(path+"/shaders/SphereSimpleVertexShader.vertexshader", path+"/shaders/SphereSimpleFragmentShader.fragmentshader");
@@ -97,7 +93,6 @@ int main()
 
     VertexArray va;
     va.Bind();
-
 
 /////////////////////////Création des objets/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -123,8 +118,8 @@ int main()
     Object sky(objPath, texturePath);
     sky.radius = 10000.0;
 
-
     /*_______________________________________________________________________________________*/
+
     objPathString = path + "/obj/sphere.obj";
     objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/soleil.jpg";
@@ -133,8 +128,8 @@ int main()
     soleil.position = {0.0f, 0.0f, 0.0f};
     soleil.radius = 100.0;
 
-
     /*_______________________________________________________________________________________*/
+
     objPathString = path + "/obj/sphere.obj";
     objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/terre.jpg";
@@ -146,7 +141,6 @@ int main()
     terre.orbital_center = soleil.position;
     terre.inclinaison = glm::radians(23.0f);
 
-
     /*_______________________________________________________________________________________*/
 
     texturePath = path+"/textures/systeme/moon.jpg";
@@ -155,7 +149,6 @@ int main()
     moon.radius = 0.7;
     moon.period = 5;
     moon.orbital_radius = terre.radius + moon.radius + 5.0;
-
 
     /*_______________________________________________________________________________________*/
 
@@ -166,7 +159,6 @@ int main()
     mercure.period = 23.0;
     mercure.orbital_radius = 57.91 + soleil.radius;
     mercure.orbital_center = soleil.position;
-
 
     /*_______________________________________________________________________________________*/
 
@@ -179,7 +171,6 @@ int main()
     venus.orbital_center = soleil.position;
     venus.inclinaison = glm::radians(177.0f);
 
-
     /*_______________________________________________________________________________________*/
 
     texturePath = path+"/textures/systeme/mars.jpg";
@@ -190,7 +181,6 @@ int main()
     mars.orbital_radius = 227.94 + soleil.radius;
     mars.orbital_center = soleil.position;
     mars.inclinaison = glm::radians(25.0f);
-
 
     /*_______________________________________________________________________________________*/
 
@@ -203,7 +193,6 @@ int main()
     jupiter.orbital_center = soleil.position;
     jupiter.inclinaison = glm::radians(3.0f);
 
-
     /*_______________________________________________________________________________________*/
 
     texturePath = path+"/textures/systeme/saturn.jpg";
@@ -214,7 +203,6 @@ int main()
     saturn.orbital_radius = 1426.72 + soleil.radius;
     saturn.orbital_center = soleil.position;
     saturn.inclinaison = glm::radians(26.73f);
-
 
     /*_______________________________________________________________________________________*/
 
@@ -229,7 +217,6 @@ int main()
     saturn_ring.orbital_center = soleil.position;
     saturn_ring.inclinaison = glm::radians(26.73f);
 
-
     /*_______________________________________________________________________________________*/
 
     objPathString = path + "/obj/sphere.obj";
@@ -243,7 +230,6 @@ int main()
     uranus.orbital_center = soleil.position;
     uranus.inclinaison = glm::radians(98.0f);
 
-
     /*_______________________________________________________________________________________*/
 
     texturePath = path+"/textures/systeme/neptune.jpg";
@@ -255,9 +241,7 @@ int main()
     neptune.orbital_center = soleil.position;
     neptune.inclinaison = glm::radians(28.0f);
 
-
 /////////////////////////Création d'un vecteur contenant toutes les planètes////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     std::vector<Object*> planets;
     planets.push_back(&mercure);
@@ -269,8 +253,6 @@ int main()
     planets.push_back(&uranus);
     planets.push_back(&neptune);
 
-
-
 /////////////////////////Création d'une source de lumière////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     glm::vec3 lightPosition;
@@ -279,7 +261,6 @@ int main()
     float lightPower = 1000.0f; // Puissance de la lumière
 
     PointLight lightSource(lightPosition, lightColor, lightPower);
-
 
 /////////////////////////On crée la camera/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -294,19 +275,11 @@ int main()
     NavigationControls controls(window, &cam, ui);
 //    FPSControls controls(window,&cam);
 
-
 /////////////////////////Création de la matrice MVP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    cam.computeMatrices(width, height);
-    glm::mat4 m ;
-    glm::mat4 v = cam.getViewMatrix();
-    glm::mat4 p = cam.getProjectionMatrix();
-
-    glm::mat4 mvp;
-
+    glm::mat4 m, v, p, mvp;
 
 /////////////////////////Boucle de rendu/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     // Assure que l'on peut capturer les touche de clavier
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
@@ -325,23 +298,19 @@ int main()
     float currentTime, deltaTime;
     float speed;
 
-    float x,y,z;
 
     glm::mat4 M_prime;
-    glm::vec3 camPos;
     glm::mat4 scalingMatrix;
 
 
     while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && !glfwWindowShouldClose(window)){
 
         ////////////////On récupère les variables///////////////
-
         currentTime = glfwGetTime();
         deltaTime = (currentTime-lastTime);
         lastTime = currentTime;
 
         speed = ui.getRotationSpeed();
-
 
         ////////////////On commence par vider les buffers///////////////
         renderer.Clear();
@@ -358,33 +327,31 @@ int main()
         v = cam.getViewMatrix();
         p = cam.getProjectionMatrix();
 
-        x= cam.position.x;
-        y= cam.position.y;
-        z= cam.position.z;
-
         //////////////Envoie de la position de la caméra vers le shader///////////////
-        camPos = {x,y,z};
-        shader.setUniform3fv("CamPosition", camPos);
+        shader.setUniform3fv("CamPosition", cam.position);
 
 
-        ////////////////Dessin de l'objet terre/////////////////////
+        ////////////////Dessin des planètes/////////////////////
 
-        //Mise à jour de la position
-        terre.Update(currentTime, deltaTime, speed);
-        terre.orbital_center = soleil.position;
+        for (auto& planet : planets)
+        {
+            //Mise à jour de la position
+            planet->Update(currentTime, deltaTime, speed);
+            planet->orbital_center = soleil.position;
 
-        //Mise à jour de taille
-        m = terre.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(terre.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
+            //Mise à jour de taille
+            m = planet->getModelMatrix();
+            scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(planet->radius));
+            M_prime = m * scalingMatrix;
+            mvp = p*v*M_prime;
 
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
+            //Envoie au shader
+            shader.setUniformMat4f("MVP", mvp);
+            shader.setUniformMat4f("m", m);
 
-        //Dessin
-        renderer.Draw(va, terre, shader);
+            //Dessin
+            renderer.Draw(va, *planet, shader);
+        }
 
 
         ////////////////Dessin de l'objet lune/////////////////////
@@ -407,108 +374,6 @@ int main()
         renderer.Draw(va, moon, shader);
 
 
-        ////////////////Dessin de l'objet mercure/////////////////////
-
-        //Mise à jour de la position
-        mercure.Update(currentTime, deltaTime, speed);
-        mercure.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = mercure.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(mercure.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, mercure, shader);
-
-
-        ////////////////Dessin de l'objet venus/////////////////////
-
-        //Mise à jour de la position
-        venus.Update(currentTime, deltaTime, speed);
-        venus.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = venus.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(venus.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, venus, shader);
-
-
-        ////////////////Dessin de l'objet mars/////////////////////
-
-        //Mise à jour de la position
-        mars.Update(currentTime, deltaTime, speed);
-        mars.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = mars.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(mars.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, mars, shader);
-
-
-        ////////////////Dessin de l'objet jupiter/////////////////////
-
-        //Mise à jour de la position
-        jupiter.Update(currentTime, deltaTime, speed);
-        jupiter.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = jupiter.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(jupiter.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, jupiter, shader);
-
-
-
-        ////////////////Dessin de l'objet saturn/////////////////////
-
-        //Mise à jour de la position
-        saturn.Update(currentTime, deltaTime, speed);
-        saturn.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = saturn.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(saturn.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, saturn, shader);
-
-
-
         ////////////////Dessin de l'objet saturn_ring/////////////////////
 
         //Mise à jour de la position
@@ -529,53 +394,9 @@ int main()
         renderer.Draw(va, saturn_ring, shader);
 
 
-
-        ////////////////Dessin de l'objet uranus/////////////////////
-
-        //Mise à jour de la position
-        uranus.Update(currentTime, deltaTime, speed);
-        uranus.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = uranus.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(uranus.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, uranus, shader);
-
-
-
-        ////////////////Dessin de l'objet neptune/////////////////////
-
-        //Mise à jour de la position
-        neptune.Update(currentTime, deltaTime, speed);
-        neptune.orbital_center = soleil.position;
-
-        //Mise à jour de taille
-        m = neptune.getModelMatrix();
-        scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(neptune.radius));
-        M_prime = m * scalingMatrix;
-        mvp = p*v*M_prime;
-
-        //Envoie au shader
-        shader.setUniformMat4f("MVP", mvp);
-        shader.setUniformMat4f("m", m);
-
-        //Dessin
-        renderer.Draw(va, neptune, shader);
-
-
-
         ////////////////Bind le shader du ciel et du Soleil///////////////
         /// (Important de bind le 2e Shader après avoir Draw tous les objets du premier)
         shaderSphere.Bind();
-
 
         ////////////////Dessin du ciel///////////////
 
@@ -592,12 +413,10 @@ int main()
         //Dessin
         renderer.Draw(va, sky, shaderSphere);
 
-
-
         ////////////////Dessin de l'objet soleil///////////////
 
         // Mise à jour de la taille
-//        soleil.Update(currentTime, deltaTime);
+        soleil.UpdateSun(currentTime, deltaTime, speed);
 
         m = soleil.getModelMatrix();
         scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(soleil.radius));
@@ -610,10 +429,26 @@ int main()
         //Dessin
         renderer.Draw(va, soleil, shaderSphere);
 
-
-
         ////////////////Dessin des orbites///////////////
+        /// Les facteurs d'échelles sont différents pour chaque planète ///
 
+//        for (auto& planet : planets)
+//        {
+//            // Mise à jour de la taille
+//            orbite.radius = planet->orbital_radius + planet->radius/2;
+//            m = orbite.getModelMatrix();
+//            scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(orbite.radius));
+//            M_prime = m * scalingMatrix;
+//            mvp = p*v*M_prime;
+
+//            //Envoie au shader
+//            shaderSphere.setUniformMat4f("MVP", mvp);
+
+//            //Dessin
+//            renderer.Draw(va, orbite, shaderSphere);
+
+//            std::cout << "le rayon entre le soleil et la planète est "<< planet->orbital_radius<< " m et la distance calculée est "<< std::hypot(planet->position.x, planet->position.y, planet->position.z)<< std::endl;
+//        }
 
 
         // Terre //
@@ -632,7 +467,6 @@ int main()
         renderer.Draw(va, orbite, shaderSphere);
 
         // Terre //
-
 
 
         // Moon //
@@ -654,7 +488,6 @@ int main()
         // Moon //
 
 
-
         // Mercury //
 
         // Mise à jour de la taille
@@ -671,7 +504,6 @@ int main()
         renderer.Draw(va, orbite, shaderSphere);
 
         // Mercury //
-
 
 
         // Venus //
@@ -692,7 +524,6 @@ int main()
         // Venus //
 
 
-
         // Mars //
 
         // Mise à jour de la taille
@@ -709,7 +540,6 @@ int main()
         renderer.Draw(va, orbite, shaderSphere);
 
         // Mars //
-
 
 
         // Jupiter //
@@ -731,7 +561,6 @@ int main()
         // Jupiter //
 
 
-
         // Saturn //
 
         // Mise à jour de la taille
@@ -750,7 +579,6 @@ int main()
         // Saturn //
 
 
-
         // Uranus //
 
         // Mise à jour de la taille
@@ -767,7 +595,6 @@ int main()
         renderer.Draw(va, orbite, shaderSphere);
 
         // Uranus //
-
 
 
         // Neptune //
@@ -791,7 +618,6 @@ int main()
         ////////////////Mis à jour des controls et de l'interface UI///////////////
         controls.update(deltaTime, &shaderSphere);
 
-
         ////////////////Partie rafraichissement de l'image et des évènements///////////////
         //Swap buffers : frame refresh
         glfwSwapBuffers(window);
@@ -799,9 +625,7 @@ int main()
         //get the events
         glfwPollEvents();
 
-
     }
-
 
     glfwTerminate();
 

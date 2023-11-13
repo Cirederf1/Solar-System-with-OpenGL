@@ -17,7 +17,7 @@ void main() {
     vec3 textureColor = texture(myTextureSampler, UV).rgb;
     
     // Lumière ambiante
-    vec3 ambiante = PointLightColor/100; 
+    vec3 ambiante = PointLightColor/15; 
     
     
     

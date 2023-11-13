@@ -21,16 +21,6 @@ Object::Object(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std:
 
 }
 
-Object::Object(std::vector<glm::vec3> vertices, std::vector<glm::vec2> uvs, std::string texturePath)
-    :m_vb(0), m_uvsb(0), m_normalsb(0), m_texture(0), position(0,0,0), rotationAngles(0,0,0)
-{
-
-     m_vb = new VertexBuffer(vertices);
-     m_uvsb = new UVBuffer(uvs);
-     m_texture = new Texture(texturePath);
-
-}
-
 
 Object::Object(const char *objPath, std::string texturePath)
     :m_vb(0), m_uvsb(0), m_normalsb(0), m_texture(0), position(0,0,0), rotationAngles(0,0,0)
@@ -73,8 +63,6 @@ void Object::Unbind() const
     if (m_texture) m_texture->Unbind();
 }
 
-
-
 void Object::Draw() const
 {
     GLCall(glDrawArrays(GL_TRIANGLES,0, m_vb->getSize()));
@@ -84,20 +72,25 @@ void Object::Update(float currentTime, float deltaTime, float speed)
 {
 
     // Calcul des nouvelles positions x et z
-    float orbitalX = this->orbital_radius * cos(currentTime * 2.0f * M_PI / (period/speed));
-    float orbitalZ = this->orbital_radius * sin(currentTime * 2.0f * M_PI / (period/speed));
+    float orbitalX = this->orbital_radius * cos(currentTime * 2.0f * M_PI / (period/(speed*2)));
+    float orbitalZ = this->orbital_radius * sin(currentTime * 2.0f * M_PI / (period/(speed*2)));
 
     // Mise à jour de la position de la planète
     this->position.x = orbitalX + this->orbital_center.x;
     this->position.z = orbitalZ + this->orbital_center.z;
 
-//    // Mise à jour de la position de la planète
-//    this->position.x = this->orbital_radius + this->orbital_center.x;
-//    this->position.z = this->orbital_radius + this->orbital_center.z;
+    // Rotation de la planète sur elle-même
+    this->rotationAngles.x = this->inclinaison;
+    this->rotationAngles.y -= (deltaTime * this->rotationSpeed * speed * 2);
+
+}
+
+void Object::UpdateSun(float currentTime, float deltaTime, float speed)
+{
 
     // Rotation de la planète sur elle-même
     this->rotationAngles.x = this->inclinaison;
-    this->rotationAngles.y += (deltaTime * this->rotationSpeed * speed);
+    this->rotationAngles.y -= (deltaTime * this->rotationSpeed * speed / 20);
 
 }
 

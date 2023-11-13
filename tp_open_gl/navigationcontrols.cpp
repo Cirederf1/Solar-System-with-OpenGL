@@ -12,7 +12,6 @@ NavigationControls::NavigationControls(GLFWwindow *window, Camera *camera, UserI
 void NavigationControls::update(float deltaTime, Shader *shader)
 {
 
-
     // On dessine l'interface imgui
     interface->Draw();
 
@@ -20,9 +19,8 @@ void NavigationControls::update(float deltaTime, Shader *shader)
     ImGuiIO& io = ImGui::GetIO();
     io.AddMouseButtonEvent(1, 0);
 
-    // On test d'abord si on est sur la fenêtre imgui ou pas
+    // On test d'abord si on est sur la fenêtre imgui ou pas et qu'aucune planète n'est sélectionnée
     if (!io.WantCaptureMouse && interface->selectedPlanet == -1){
-
 
         int state = glfwGetMouseButton(m_Window, GLFW_MOUSE_BUTTON_LEFT);
         double xpos, ypos;
