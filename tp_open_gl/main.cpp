@@ -15,7 +15,6 @@
 #include "fpscontrols.h"
 #include "pointlight.h"
 #include "object.h"
-#include "orbit.h"
 #include "userinterface.h"
 
 #include "imgui/imgui.h"
@@ -94,7 +93,6 @@ int main()
     Shader shader(path+"/shaders/SimpleVertexShader.vertexshader", path+"/shaders/SimpleFragmentShader.fragmentshader");
     Shader shaderSphere(path+"/shaders/SphereSimpleVertexShader.vertexshader", path+"/shaders/SphereSimpleFragmentShader.fragmentshader");
 
-
 /////////////////////////On crée un vertex array/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     VertexArray va;
@@ -137,14 +135,13 @@ int main()
 
 
     /*_______________________________________________________________________________________*/
-    objPathString = path + "/obj/m_evee2.obj";
+    objPathString = path + "/obj/sphere.obj";
     objPath = objPathString .c_str();
     texturePath = path+"/textures/systeme/soleil.jpg";
 
     Object soleil(objPath, texturePath);
     soleil.position = {0.0f, 0.0f, 0.0f};
     soleil.radius = 100.0;
-    soleil.period = 100;
 
 
     /*_______________________________________________________________________________________*/
@@ -333,9 +330,11 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    ////////////////On déclare les variables///////////////
 
     float lastTime = glfwGetTime();
     float currentTime, deltaTime;
+    float speed;
 
     float x,y,z;
 
@@ -346,16 +345,13 @@ int main()
 
     while(glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && !glfwWindowShouldClose(window)){
 
-
-//        std::cout<< lightSource.power<< std::endl;
+        ////////////////On récupère les variables///////////////
 
         currentTime = glfwGetTime();
         deltaTime = (currentTime-lastTime);
         lastTime = currentTime;
 
-        float speed = ui.getRotationSpeed();
-
-//        std::cout<<ui.getRotationSpeed()<<std::endl;
+        speed = ui.getRotationSpeed();
 
 
         ////////////////On commence par vider les buffers///////////////

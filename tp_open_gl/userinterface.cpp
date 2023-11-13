@@ -50,7 +50,7 @@ void UserInterface::Draw()
     ImGui::SetNextWindowSize(ImVec2(450, 350), ImGuiCond_Always);
 
     // Démarrez la fenêtre ImGui en désactivant la possibilité de redimensionner
-    ImGui::Begin("Hello, ImGui!", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+    ImGui::Begin("Hello, Florent!", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     // Sélection de la planète à suivre
     ImGui::Text("Sélectionnez une planète :");
