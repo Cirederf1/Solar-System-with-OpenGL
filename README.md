@@ -17,7 +17,7 @@ Ensure that you have the following tools and libraries installed on your system:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/Solar-System.git
+   git clone https://github.com/Cirederf1/Solar-System.git
    ```
 2. **Open with Qt Creator:**
     - Launch Qt Creator.
@@ -28,7 +28,6 @@ Ensure that you have the following tools and libraries installed on your system:
     - Build the project to generate the executable.
       
 4. **Run the Application:**
-
     - Run the compiled executable to launch the Solar System visualization.
       
 ## Notes
