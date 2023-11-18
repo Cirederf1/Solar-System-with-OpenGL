@@ -2,5 +2,5 @@
 **/*.user
 
 # Ignorer les dossiers dont le nom commence par "built-"
-built-*/
+built-*
 
