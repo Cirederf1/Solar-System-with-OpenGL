@@ -1,0 +1,6 @@
+# Ignorer les fichiers .user
+*.user
+
+# Ignorer les dossiers dont le nom commence par "built-"
+built-*/
+

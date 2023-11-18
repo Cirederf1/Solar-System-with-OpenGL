@@ -1,6 +1,10 @@
 # Solar-System
 
-This project involves coding a Solar System visualization using OpenGL in C++. To install the application, follow these steps:
+This project involves coding a Solar System visualization using OpenGL in C++. 
+![](./images/image1.png)
+![](./images/image2.png)
+
+To install the application, follow these steps:
 
 ## Prerequisites
 
