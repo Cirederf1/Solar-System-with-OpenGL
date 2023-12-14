@@ -1,0 +1,6 @@
+[submodule "tp_open_gl/lib2/glfw"]
+	path = tp_open_gl/lib2/glfw
+	url = https://github.com/glfw/glfw
+[submodule "tp_open_gl/lib2/glew"]
+	path = tp_open_gl/lib2/glew
+	url = https://github.com/Perlmint/glew-cmake
