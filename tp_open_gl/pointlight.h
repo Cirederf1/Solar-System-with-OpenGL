@@ -1,6 +1,6 @@
 #ifndef POINTLIGHT_H
 #define POINTLIGHT_H
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 #include "shader.h"
 
 

@@ -2,9 +2,8 @@
 
 #include <iostream>
 #include "renderer.h"
-#include "glm/gtx/transform.hpp"
+#include <glm/gtx/transform.hpp>
 
-#include <exception>
 #include <cstring>
 
 
@@ -41,15 +40,15 @@ Object::Object(const char *objPath, std::string texturePath)
 
 Object::~Object()
 {
-    delete m_vb;
     if (m_uvsb) delete m_uvsb;
+    if (m_vb) delete m_vb;
     if (m_normalsb) delete m_normalsb;
     if (m_texture) delete m_texture;
 }
 
 void Object::Bind() const
 {
-    m_vb->Bind(0);
+    if (m_vb) m_vb->Bind(0);
     if (m_uvsb) m_uvsb->Bind(1);
     if (m_normalsb) m_normalsb->Bind(2);
     if (m_texture) m_texture->Bind(0);
@@ -57,7 +56,7 @@ void Object::Bind() const
 
 void Object::Unbind() const
 {
-    m_vb->Unbind();
+    if (m_vb) m_vb->Unbind();
     if (m_uvsb) m_uvsb->Unbind();
     if (m_normalsb) m_normalsb->Unbind();
     if (m_texture) m_texture->Unbind();

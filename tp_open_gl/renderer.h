@@ -3,15 +3,15 @@
 
 #include <GL/glew.h>
 #include <iostream>
-#include <signal.h>
+#include <cstdlib>  // Include for std::abort()
 
 #include "vertexarray.h"
 #include "shader.h"
 #include "object.h"
 
-#define ASSERT(x) if (!(x)) raise(SIGTRAP);
+#define ASSERT(x) if (!(x)) std::abort();
 #define GLCall(x) GLClearError();\
-    x;\
+x;\
     ASSERT(GLLogCall(#x, __FILE__, __LINE__));
 
 void GLClearError();

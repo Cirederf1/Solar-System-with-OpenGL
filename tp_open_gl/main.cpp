@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 #include <vector>
 
 #include "vertexbuffer.h"
@@ -627,7 +627,7 @@ int main()
 
     }
 
+    ////////////////Suppression des instances///////////////
     glfwTerminate();
-
     return 0;
 }

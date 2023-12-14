@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 #include "glm/gtx/transform.hpp"
 #include "shader.h"
 
