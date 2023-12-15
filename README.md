@@ -22,6 +22,9 @@ Ensure that you have the following tools and libraries installed on your system:
 sudo apt install qtcreator cmake libglfw3-dev libglm-dev libglew-dev
 ```
 
+**Windows:**  
+   - Librairies in lib folder
+
 ## Installation
 
 1. **Clone the Repository:**
@@ -31,6 +34,8 @@ sudo apt install qtcreator cmake libglfw3-dev libglm-dev libglew-dev
 2. **Open with Qt Creator:**
     - Launch Qt Creator.
     - Open the project by selecting the CMakeLists.txt file.
+       - For Linux : Use CMakeLists.txt
+       - For Windows : Rename the CMakeLists_windows.txt to CMakeLists.txt 
       
 3. **Configure and Build:**
     - Configure the project using CMake.
