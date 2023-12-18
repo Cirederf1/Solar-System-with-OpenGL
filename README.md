@@ -24,7 +24,7 @@ sudo apt install qtcreator cmake libglfw3-dev libglm-dev libglew-dev
 
 **Windows:**  
    - Tuto to install QtCreator along with CMake : [How To Install Qt Creator on Windows 11](https://www.youtube.com/watch?v=OoVNt-KJ96w&ab_channel=ProgrammingKnowledge)
-   - Librairies in lib folder
+   - Librairies are in lib folder
 
 ## Installation
 
